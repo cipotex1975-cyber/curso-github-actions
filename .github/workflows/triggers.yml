@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Correr script
-        run: echo ${{ input.nombre }}, es un placer saludarlo.
+        run: echo ${{ inputs.nombre }}, es un placer saludarlo.
   mayor:
     if: ${{ fromJSON(inputs.edad) &gt;= 18 }}
     runs-on: unbuntu-latest
