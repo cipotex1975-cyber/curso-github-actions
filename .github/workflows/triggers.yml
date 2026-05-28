@@ -1,4 +1,5 @@
 name: Expression
+
 on:
   workflow_dispatch:
     inputs:
@@ -6,28 +7,34 @@ on:
         description: 'Edad'
         required: true
         type: integer
+
       nombre:
         description: 'Tu nombre'
         required: true
         default: 'Juan'
         type: string
+
 jobs:
   saludar:
-    if: ${{ inputs.nombre != null}}
+    if: ${{ inputs.nombre != null }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Correr script
-        run: echo ${{ inputs.nombre }}, es un placer saludarlo.
+        run: echo "${{ inputs.nombre }}, es un placer saludarlo."
+
   mayor:
-    if: ${{ fromJSON(inputs.edad) &gt;= 18 }}
-    runs-on: unbuntu-latest
-    steps:
-      - name: Correr script
-        run: echo ${{ inputs.nombre }} es mayor de edad.
-  menor:
-    if: ${{ fromJSON(inputs.edad) &lt; 18 }}
+    if: ${{ fromJSON(inputs.edad) >= 18 }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Correr script
-        run: echo ${{ inputs.nombre }} es menor de edad.
-      
+        run: echo "${{ inputs.nombre }} es mayor de edad."
+
+  menor:
+    if: ${{ fromJSON(inputs.edad) < 18 }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Correr script
+        run: echo "${{ inputs.nombre }} es menor de edad."
